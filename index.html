@@ -993,7 +993,11 @@
             </div>
         </div>
 
-        <form class="contact-form" onsubmit="handleSubmit(event)">
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
             <input type="text" name="name" placeholder="お名前" required>
             <input type="email" name="email" placeholder="メールアドレス" required>
             <input type="tel" name="phone" placeholder="電話番号">
@@ -1115,23 +1119,8 @@
             });
         });
 
-        // フォーム送信処理
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(event.target);
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // ここで実際の送信処理を行う（メール送信等）
-            console.log('送信データ:', data);
-            
-            alert('お問い合わせありがとうございます！24時間以内にご連絡いたします。\n\n緊急の場合は直接お電話（090-1234-5678）にてご連絡ください。');
-            event.target.reset();
-        }
+        // フォーム送信処理（Netlify Forms使用のため削除）
+        // Netlify Formsが自動で処理します
 
         // ページ読み込み時のアニメーション
         window.addEventListener('load', () => {
